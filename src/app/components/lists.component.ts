@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { computeDecimalDigest } from '@angular/compiler/src/i18n/digest';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,12 +19,21 @@ export class ListsComponent implements OnInit {
 
     this.lists = await this.http.get<any>('/lists').toPromise()   
 
-
   }
 
   routeToTasks(listID: string, listName: string){
     this.cloud.store(listID, listName)
     this.router.navigate(['/tasks'])
+  }
+
+  async deleteList(listID: string){
+    const httpHeaders = new HttpHeaders()
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+
+    await this.http.post<any>('/deleteList', "listID="+listID.toString(), {headers: httpHeaders}).toPromise()
+    
+    this.lists = await this.http.get<any>('/lists').toPromise()   
+
   }
 
 }

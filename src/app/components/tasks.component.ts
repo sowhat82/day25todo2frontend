@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cloud } from '../cloud.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class TasksComponent implements OnInit {
   listID =""
   listName = ""
   tasks = []
-  constructor(private cloud: Cloud, private http: HttpClient) { }
+  constructor(private cloud: Cloud, private http: HttpClient, private router: Router) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -22,8 +23,28 @@ export class TasksComponent implements OnInit {
     this.tasks = await this.http.get<any>('/tasks/'+this.listID).toPromise() 
   }
 
-  editListName(){
+  async deleteTask(taskID: string){
+    const httpHeaders = new HttpHeaders()
+
+    const params = new HttpParams()
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('taskID', taskID)
+    .set('listID', this.listID)
+
+    // await this.http.post<any>('/deleteTask', "taskID="+taskID.toString(), {headers: httpHeaders}).toPromise()
+    await this.http.post<any>('/deleteTask', params, {headers: httpHeaders}).toPromise()
     
+    this.tasks = await this.http.get<any>('/tasks/'+this.listID).toPromise() 
+
+  }
+
+  editListName(){
+    this.router.navigate(['/editListName'], {
+      state: {
+        listID: this.listID,
+        listName: this.listName,
+      }
+    }) 
   }
 
 }

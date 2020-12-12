@@ -6,6 +6,11 @@
     </div>    
 </form>
 <br>
+List Profile Picture
+<div>
+    <input accept="image/*" type="file" name ="imageFile" (change)="onFileSelect($event)" />
+</div>
+<br>
 <button type="button" class="btn btn-primary mx-2" [routerLink] = "['/']">Back</button>
 
 <button (click) = "addNewList()" type="button" class="btn btn-primary" [disabled] = "newListForm.invalid">

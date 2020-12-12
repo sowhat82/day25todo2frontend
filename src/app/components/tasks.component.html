@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h2 class="card-text">{{listName}} <button (click) = "editListName()" class="badge bg-primary rounded-pill float-right">Edit</button> </h2>
+      
+    </div>
+  </div>  
+  
+  <br>
+    <ul class="list-group">
+      <li *ngFor = "let t of tasks" class="list-group-item d-flex justify-content-between align-items-center">
+          {{t.taskName}}
+          <button type="button" class="btn btn-danger" (click)="deleteTask(t.taskID)">Delete</button>    </li>
+    </ul>
+  <br>
+  
+  
+  <button type="button" class="btn btn-primary mx-2" [routerLink] = "['/']">Back</button>
+  
+  <button [routerLink]="['/addNewTask']" type="button" class="btn btn-primary">
+      Add Task
+  </button>

@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { ListsComponent } from './components/lists.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { cloud } from './cloud.service';
+import { Cloud } from './cloud.service';
+import { TasksComponent } from './components/tasks.component';
+import { AddNewTaskComponent } from './components/add-new-task.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListsComponent },
-  // { path: 'listItems', component: ListItemsComponent },
-  // { path: 'newList', component: NewListComponent },
+  { path: 'tasks', component: TasksComponent },
+  { path: 'addNewTask', component: AddNewTaskComponent },
   // { path: 'newTask', component: NewTaskComponent },
   // { path: 'editListName', component: EditListNameComponent },
   ];
@@ -18,12 +20,14 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ListsComponent
+    ListsComponent,
+    TasksComponent,
+    AddNewTaskComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, ReactiveFormsModule, HttpClientModule 
   ],
-  providers: [cloud],
+  providers: [Cloud],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

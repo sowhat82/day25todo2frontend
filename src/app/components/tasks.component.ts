@@ -37,14 +37,4 @@ export class TasksComponent implements OnInit {
     this.tasks = await this.http.get<any>('/tasks/'+this.listID).toPromise() 
 
   }
-
-  editListName(){
-    this.router.navigate(['/editListName'], {
-      state: {
-        listID: this.listID,
-        listName: this.listName,
-      }
-    }) 
-  }
-
 }

@@ -9,13 +9,14 @@ import { Cloud } from './cloud.service';
 import { TasksComponent } from './components/tasks.component';
 import { AddNewTaskComponent } from './components/add-new-task.component';
 import { AddNewListComponent } from './components/add-new-list.component';
+import { EditListComponent } from './components/edit-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: ListsComponent },
   { path: 'tasks', component: TasksComponent },
   { path: 'addNewTask', component: AddNewTaskComponent },
   { path: 'newList', component: AddNewListComponent },
-  // { path: 'editListName', component: EditListNameComponent },
+  { path: 'editListName', component: EditListComponent },
   ];
 
 @NgModule({
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     ListsComponent,
     TasksComponent,
     AddNewTaskComponent,
-    AddNewListComponent
+    AddNewListComponent,
+    EditListComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(appRoutes), FormsModule, ReactiveFormsModule, HttpClientModule 

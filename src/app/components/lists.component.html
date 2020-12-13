@@ -2,8 +2,8 @@
   <ul class="list-group">
     <li *ngFor = "let l of lists" class="list-group-item d-flex justify-content-between align-items-center">
 
-        <img *ngIf = "d !== 'undefined'" [src]="d" class="img-thumbnail img-fluid" width="10%">
-
+        <img *ngIf = "l.image !== 'undefined'" [src]="l.image" class="img-thumbnail img-fluid" width="10%">
+        
         <a (click) = "routeToTasks(l.listID, l.listName)" class="list-group-item list-group-item-action list-group-item-primary">{{l.listName}}</a>
         <button type="button" class="btn btn-danger" (click)="deleteList(l.listID)">Delete</button>    
     </li>

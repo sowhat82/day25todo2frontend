@@ -64,9 +64,6 @@ export class AddNewListComponent implements OnInit {
       await this.http.post<any>('/uploadImage', formData).toPromise()  
     }
 
-
-
-
     this.router.navigate(['/'])
 
   }
